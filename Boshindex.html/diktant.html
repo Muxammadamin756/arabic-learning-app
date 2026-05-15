@@ -23,20 +23,20 @@
 
     <div class="wrap">
         <header>
-            <h1>Diktant — tingla, yoz va tekshir</h1>
+            <h1>Diktant — arabcha so‘zni o‘zbek tiliga tarjima qiling</h1>
             <div class="controls">
                 <button id="playBtn" class="btn">start</button>
                 <button id="nextBtn" class="btn secondary">Keyingi</button>
                 <button id="checkBtn" class="btn">Tekshir</button>
-                <button id="showBtn" class="btn secondary">Javobni ko'rsat</button>
-                <button id="translateBtn" class="btn secondary">🌍 Arabcha javob</button>
+                <button id="showBtn" class="btn secondary">Javobni ko‘rsat</button>
+                <button id="translateBtn" class="btn secondary">🌍 O‘zbekcha javob</button>
             </div>
         </header>
 
         <div class="area">
             <div class="panel">
-                <div class="player-title">Quyidagi o‘zbek gapni arabchada yozing:</div>
-                <textarea id="answer" placeholder="Bu yerga arabcha gapni yozing..."></textarea>
+                <div class="player-title">Quyidagi arabcha gapni o‘zbekchada yozing:</div>
+                <textarea id="answer" placeholder="Bu yerga o‘zbekcha tarjimani yozing..."></textarea>
                 <div class="meta">
                     <div class="small">So'rovlar: <span id="round">0</span>/<span id="total">0</span></div>
                     <div class="small">Ball: <span id="score" class="score">0</span></div>
@@ -53,15 +53,17 @@
 
             <div class="right-column">
                 <div class="panel">
-                    <div class="player-title">Hozirgi so‘z (o‘zbekcha)</div>
-                    <div id="sentenceBox" class="sentence-box">Uzbekcha so‘z bu yerda chiqadi</div>
+                    <div class="player-title">Hozirgi so‘z (arabcha)</div>
+                    <div id="sentenceBox" class="sentence-box">Arabcha so‘z bu yerda chiqadi</div>
                     <div class="translation-panel">
-                        <div class="player-title">Arabcha javob</div>
-                        <div id="translationBox" class="translation-box">Javob yashirilgan. "Arabcha javob" tugmasini bosing.</div>
+                        <div class="player-title">O‘zbekcha javob</div>
+                        <div id="translationBox" class="translation-box">Javob yashirilgan. "O‘zbekcha javob" tugmasini bosing.</div>
                     </div>
                     <div class="controls-row button-row">
                         <button id="replayBtn" class="btn secondary">🔁 Qayta tingla</button>
                         <button id="revealBtn" class="btn">👁‍🗨 Javobni ko'rsat</button>
+                    </div>
+                </div>
 
                 <div class="panel">
                     <div class="player-title">Sozlamalar</div>
@@ -96,14 +98,14 @@
             { ar: "السَّلَامُ عَلَيْكُمْ", uz: "Assalomu alaykum" },
             { ar: "كَيْفَ حَالُكَ؟", uz: "Qalaysiz? / Qanday ahvolda siz?" },
             { ar: "أَيْنَ الْمَكْتَبُ؟", uz: "Ofis qayerda?" },
-            { ar: "هَذَا كِتَابٌ جَدِيدٌ", uz: "Bu yangi kitob." },
+            { ar: "هَذَا كِتَابٌ جَدِيدٌ", uz: "Bu yangi kitob" },
             { ar: "أُحِبُّ تَعَلُّمَ الْعَرَبِيَّةِ", uz: "Men arab tilini o'rganishni yaxshi ko'raman." },
             { ar: "الطَّقْسُ جَمِيلٌ الْيَوْمَ", uz: "Bugun havo go'zal." },
             { ar: "هَلْ أَنْتَ مُسْتَعِدٌّ؟", uz: "Siz tayyormisiz?" },
             { ar: "شُكْرًا جَزِيلًا", uz: "Katta rahmat." },
             { ar: "مَوْعِدُنَا فِي السَّاعَةِ الثَّالِثَةِ", uz: "Bizning uchrashuv uchinchi soatda." },
             { ar: "أَيْنَ الْحَمَّامُ؟", uz: "Hammom qayerda?" },
-            { ar: "هَذِهِ سَيَّارَةٌ سَرِيعَةٌ", uz: "Bu tez avtomobil." },
+            { ar: "هَذِهِ سَيَّارَةٌ سَرِيعَةٌ", uz: "Bu tez mashina." },
             { ar: "أَذْهَبُ إِلَى الْمَدْرَسَةِ", uz: "Men maktabga boraman." }
         ];
 
@@ -147,7 +149,7 @@
             score = 0;
             scoreEl.textContent = score;
             currentIdx = -1;
-            sentenceBox.textContent = "Uzbekcha so‘z bu yerda chiqadi";
+            sentenceBox.textContent = "Arabcha so‘z bu yerda chiqadi";
             answer.value = "";
             translationVisible = false;
             updateTranslationPanel();
@@ -163,16 +165,16 @@
         function updateTranslationPanel() {
             if (!translationBox) return;
             if (currentIdx < 0) {
-                translationBox.textContent = 'Javob yashirilgan. "Arabcha javob" tugmasini bosing.';
-                if (translateBtn) translateBtn.textContent = '🌍 Arabcha javob';
+                translationBox.textContent = 'Javob yashirilgan. "O‘zbekcha javob" tugmasini bosing.';
+                if (translateBtn) translateBtn.textContent = '🌍 O‘zbekcha javob';
                 return;
             }
             if (translationVisible) {
-                translationBox.textContent = pool[currentIdx].ar;
+                translationBox.textContent = pool[currentIdx].uz;
                 if (translateBtn) translateBtn.textContent = '🌍 Javobni yashirish';
             } else {
-                translationBox.textContent = 'Javob yashirilgan. "Arabcha javob" tugmasini bosing.';
-                if (translateBtn) translateBtn.textContent = '🌍 Arabcha javob';
+                translationBox.textContent = 'Javob yashirilgan. "O‘zbekcha javob" tugmasini bosing.';
+                if (translateBtn) translateBtn.textContent = '🌍 O‘zbekcha javob';
             }
         }
 
@@ -213,20 +215,23 @@
             translationVisible = false;
             updateTranslationPanel();
             sentenceBox.innerHTML = `
-                <div class="sentence-text uzbek-text">${pool[currentIdx].uz}</div>
+                <div class="sentence-text">${pool[currentIdx].ar}</div>
             `;
             speakSentence(pool[currentIdx].ar);
         }
 
         function normalize(s) {
-            return s.toLowerCase().replace(/[\u064B-\u0652]/g, '') // remove Arabic diacritics
-                .replace(/[^\p{L}\p{N}]+/gu, '').trim();
+            return s.toLowerCase()
+                .replace(/[\u064B-\u0652]/g, '') // remove Arabic diacritics
+                .replace(/[^\p{L}\p{N}\s]+/gu, '')
+                .replace(/\s+/g, ' ')
+                .trim();
         }
 
         function check() {
             if (currentIdx < 0) return;
             const user = normalize(answer.value);
-            const correct = normalize(pool[currentIdx].ar);
+            const correct = normalize(pool[currentIdx].uz);
             if (!user) {
                 alert("Iltimos yozing.");
                 return;
@@ -235,8 +240,9 @@
                 score += 1;
                 scoreEl.textContent = score;
                 flash("To'g'ri ✓", true);
+                celebrate();
             } else {
-                flash("Noto'g'ri ✗  —  To'g'ri: " + pool[currentIdx].ar + " — " + pool[currentIdx].uz, false);
+                flash("Noto'g'ri ✗  —  To'g'ri: " + pool[currentIdx].uz + "", false);
             }
             setTimeout(next, 900);
         }
@@ -260,6 +266,25 @@
             if (currentIdx < 0) return;
             translationVisible = true;
             updateTranslationPanel();
+        }
+
+        function celebrate() {
+            const container = document.createElement('div');
+            container.className = 'confetti-container';
+            const colors = ['#00c3ff', '#ffdd57', '#ff5a5f', '#7c3aed', '#22c55e'];
+            for (let i = 0; i < 24; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = `${Math.random() * 100}%`;
+                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.width = `${8 + Math.random() * 6}px`;
+                piece.style.height = `${8 + Math.random() * 6}px`;
+                piece.style.animationDelay = `${Math.random() * 300}ms`;
+                piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+                container.appendChild(piece);
+            }
+            document.body.appendChild(container);
+            setTimeout(() => container.remove(), 1800);
         }
 
         // Recording (optional pronunciation recording)
@@ -290,7 +315,7 @@
         playBtn.onclick = () => {
             if (currentIdx < 0) next(); else {
                 sentenceBox.innerHTML = `
-                <div class="sentence-text uzbek-text">${pool[currentIdx].uz}</div>
+                <div class="sentence-text">${pool[currentIdx].ar}</div>
             `;
                 translationVisible = false;
                 updateTranslationPanel();
@@ -300,7 +325,7 @@
         replayBtn.onclick = () => {
             if (currentIdx >= 0) {
                 sentenceBox.innerHTML = `
-                <div class="sentence-text uzbek-text">${pool[currentIdx].uz}</div>
+                <div class="sentence-text">${pool[currentIdx].ar}</div>
             `;
                 translationVisible = false;
                 updateTranslationPanel();
